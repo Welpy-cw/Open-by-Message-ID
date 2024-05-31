@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Open Message-ID",
-  "description": "Interpret different URIs as Message-IDs and open them from the message database, from a news server, or in web browser.",
+  "description": "Interpret different URIs as Message-IDs and open them from the message database, from a news server, or in a web browser.",
   "version": "1.0",
   "author": "Hartmut Welpmann [:welpy-cw]",
   "browser_specific_settings": {
