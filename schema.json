@@ -1,0 +1,47 @@
+[
+  {
+    "namespace": "mailUtilsWrapper",
+    "functions": [
+      {
+        "name": "openMessageForMessageId",
+        "description": "open the message with this id",
+        "type": "function",
+        "async": false,
+        "parameters": [
+          {
+            "name": "messageID",
+            "type": "string"
+          },
+          {
+            "name": "tab",
+            "$ref": "tabs.Tab"
+          }
+        ]
+      },
+      {
+        "name": "handleNewsUri",
+        "description": "handle the news URI",
+        "type": "function",
+        "async": false,
+        "parameters": [
+          {
+            "name": "openNewsUri",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "name": "openBrowserWithMessageId",
+        "description": "open the browser for this message-id",
+        "type": "function",
+        "async": false,
+        "parameters": [
+          {
+            "name": "messageID",
+            "type": "string"
+          }
+        ]
+      }
+    ]
+  }
+]
