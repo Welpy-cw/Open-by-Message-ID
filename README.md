@@ -1,4 +1,4 @@
-# Open by Message-Id
+# Open by Message-ID
 
 Add-On for Thunderbird 127+
 
