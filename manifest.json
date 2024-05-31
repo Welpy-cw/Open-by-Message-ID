@@ -1,12 +1,12 @@
 {
   "manifest_version": 2,
-  "name": "Open Message-ID",
+  "name": "Open by Message-ID",
   "description": "Interpret different URIs as Message-IDs and open them from the message database, from a news server, or in a web browser.",
-  "version": "1.0",
+  "version": "1.0.1",
   "author": "Hartmut Welpmann [:welpy-cw]",
   "browser_specific_settings": {
     "gecko": {
-      "id": "welpy-cw.open-message-id@addons.thunderbird.net",
+      "id": "welpy-cw.open-by-message-id@addons.thunderbird.net",
       "strict_min_version": "127.0",
       "strict_max_version": "*"
     }
