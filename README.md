@@ -2,4 +2,6 @@
 
 Add-On for Thunderbird 127+
 
-Interpret different URIs as Message-IDs and open them from the message database, from a news server, or in a web browser.
+For any 'mid', 'mailto', 'news', or 'nntp' URI that may contain a Message-ID,
+this adds menu items to the context menu to attempt to open the message for
+that ID from the message database, from a news server, or in a web browser.
