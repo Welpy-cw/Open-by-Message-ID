@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Open by Message-ID",
   "description": "Open links that may contain a Message-ID in several ways.",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "author": "Hartmut Welpmann [:welpy-cw]",
   "browser_specific_settings": {
     "gecko": {
@@ -17,7 +17,13 @@
   "options_ui": {
     "page": "options.html"
   },
-  "permissions": ["accountsRead", "activeTab", "menus", "messagesRead", "storage"],
+  "permissions": [
+    "accountsRead",
+    "activeTab",
+    "menus",
+    "messagesRead",
+    "storage"
+  ],
 
   "experiment_apis": {
     "mailUtilsWrapper": {
