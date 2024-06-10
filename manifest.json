@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Open by Message-ID",
   "description": "Open links that may contain a Message-ID in several ways.",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "author": "Hartmut Welpmann [:welpy-cw]",
   "browser_specific_settings": {
     "gecko": {
