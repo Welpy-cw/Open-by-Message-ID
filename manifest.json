@@ -14,7 +14,10 @@
   "background": {
     "scripts": ["background.js"]
   },
-  "permissions": ["activeTab", "menus", "messagesRead"],
+  "options_ui": {
+    "page": "options.html"
+  },
+  "permissions": ["accountsRead", "activeTab", "menus", "messagesRead", "storage"],
 
   "experiment_apis": {
     "mailUtilsWrapper": {

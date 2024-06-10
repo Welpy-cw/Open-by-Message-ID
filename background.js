@@ -3,6 +3,11 @@ const openMIDFromDatabase = "openMIDDatabase";
 const openMIDFromServer = "openMIDServer";
 const openMIDInBrowser = "openMIDBrowser";
 
+const browserUrls = {
+  Google: "https://groups.google.com/search?q=messageid%3A%mid",
+  "Howard Knight": "http://al.howardknight.net/?STYPE=msgid&MSGI=<%mid>",
+};
+
 messenger.menus.create({
   contexts: ["link"],
   title: "Open Message-ID",
@@ -19,7 +24,7 @@ messenger.menus.create({
 
 messenger.menus.create({
   contexts: ["link"],
-  title: "… from Server",
+  title: "… from News Server",
   id: openMIDFromServer,
   parentId: openMID,
 });
@@ -43,29 +48,51 @@ messenger.menus.onShown.addListener((info, tab) => {
   messenger.menus.refresh();
 });
 
-messenger.menus.onClicked.addListener((info, tab) => {
+messenger.menus.onClicked.addListener(async (info, tab) => {
   const extractMID = (url) => {
-    return decodeURI(url.replace(/(.*(\/|:))(?!.*(\/|:))/, ""))
-  }
+    return decodeURI(url.replace(/(.*(\/|:))(?!.*(\/|:))/, ""));
+  };
 
   const extractServer = (url) => {
     const found = url.match(/^.*:\/\/(.*)\//);
     return found?.length > 1 ? decodeURI(found[1]) : "";
-  }
-
+  };
 
   if (info.menuItemId == openMIDFromDatabase) {
-    messenger.mailUtilsWrapper.openMessageForMessageId(extractMID(info.linkUrl), tab);
+    const mid = extractMID(info.linkUrl);
+    const displayedMessage = await messenger.messageDisplay.getDisplayedMessage(
+      await messenger.tabs.getCurrent()
+    );
+    const messageList = await messenger.messages.query({
+      accountId: displayedMessage.folder.accountId,
+      headerMessageId: mid,
+    });
+    await messenger.messageDisplay
+      .open(
+        messageList.messages.length
+          ? { messageId: messageList.messages[0].id }
+          : { headerMessageId: mid }
+      )
+      .catch((e) => {
+        console.warn(e.message);
+      });
     return;
   }
 
   if (info.menuItemId == openMIDFromServer) {
-    messenger.mailUtilsWrapper.handleNewsUri(`news://${extractServer(info.linkUrl)}/${extractMID(info.linkUrl)}`);
+    messenger.mailUtilsWrapper.handleNewsUri(
+      `news://${extractServer(info.linkUrl)}/${extractMID(info.linkUrl)}`
+    );
     return;
   }
 
   if (info.menuItemId == openMIDInBrowser) {
-    messenger.mailUtilsWrapper.openBrowserWithMessageId(extractMID(info.linkUrl));
+    const [pref] =
+      Object.values(
+        await messenger.storage.local.get("selectedLookupService")
+      ) ?? "Google";
+    const mid = encodeURIComponent(extractMID(info.linkUrl));
+    browser.windows.openDefaultBrowser(browserUrls[pref].replace(/%mid/, mid));
     return;
   }
 });
