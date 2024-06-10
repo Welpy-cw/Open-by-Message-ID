@@ -90,9 +90,9 @@ messenger.menus.onClicked.addListener(async (info, tab) => {
     const [pref] =
       Object.values(
         await messenger.storage.local.get("selectedLookupService")
-      ) ?? "Google";
+      );
     const mid = encodeURIComponent(extractMID(info.linkUrl));
-    browser.windows.openDefaultBrowser(browserUrls[pref].replace(/%mid/, mid));
+    browser.windows.openDefaultBrowser(browserUrls[pref ?? "Google"].replace(/%mid/, mid));
     return;
   }
 });
