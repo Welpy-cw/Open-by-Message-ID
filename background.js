@@ -87,12 +87,13 @@ messenger.menus.onClicked.addListener(async (info, tab) => {
   }
 
   if (info.menuItemId == openMIDInBrowser) {
-    const [pref] =
-      Object.values(
-        await messenger.storage.local.get("selectedLookupService")
-      );
+    const { selectedLookupService } = await messenger.storage.local.get({
+      selectedLookupService: "Google",
+    });
     const mid = encodeURIComponent(extractMID(info.linkUrl));
-    browser.windows.openDefaultBrowser(browserUrls[pref ?? "Google"].replace(/%mid/, mid));
+    browser.windows.openDefaultBrowser(
+      browserUrls[selectedLookupService].replace(/%mid/, mid)
+    );
     return;
   }
 });
