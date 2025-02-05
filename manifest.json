@@ -2,13 +2,13 @@
   "manifest_version": 2,
   "name": "Open by Message-ID",
   "description": "Open links that may contain a Message-ID in several ways.",
-  "version": "1.1.2",
+  "version": "1.2.0-test",
   "author": "Hartmut Welpmann [:welpy-cw]",
   "browser_specific_settings": {
     "gecko": {
       "id": "welpy-cw.open-by-message-id@addons.thunderbird.net",
-      "strict_min_version": "127.0",
-      "strict_max_version": "129.*"
+      "strict_min_version": "137.0a1",
+      "strict_max_version": "137.*"
     }
   },
   "background": {
@@ -21,18 +21,6 @@
     "accountsRead",
     "activeTab",
     "menus",
-    "messagesRead",
     "storage"
-  ],
-
-  "experiment_apis": {
-    "mailUtilsWrapper": {
-      "schema": "schema.json",
-      "parent": {
-        "scopes": ["addon_parent"],
-        "paths": [["mailUtilsWrapper"]],
-        "script": "implementation.js"
-      }
-    }
-  }
+  ]
 }

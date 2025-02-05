@@ -3,34 +3,35 @@ const openMIDFromDatabase = "openMIDDatabase";
 const openMIDFromServer = "openMIDServer";
 const openMIDInBrowser = "openMIDBrowser";
 
+const links = ["link", "header_pane_link"];
 const browserUrls = {
   Google: "https://groups.google.com/search?q=messageid%3A%mid",
   "Howard Knight": "http://al.howardknight.net/?STYPE=msgid&MSGI=<%mid>",
 };
 
 messenger.menus.create({
-  contexts: ["link"],
+  contexts: links,
   title: "Open Message-ID",
   id: openMID,
   visible: false,
 });
 
 messenger.menus.create({
-  contexts: ["link"],
+  contexts: links,
   title: "… from Database",
   id: openMIDFromDatabase,
   parentId: openMID,
 });
 
 messenger.menus.create({
-  contexts: ["link"],
+  contexts: links,
   title: "… from News Server",
   id: openMIDFromServer,
   parentId: openMID,
 });
 
 messenger.menus.create({
-  contexts: ["link"],
+  contexts: links,
   title: "… in Browser",
   id: openMIDInBrowser,
   parentId: openMID,
