@@ -81,9 +81,19 @@ messenger.menus.onClicked.addListener(async (info, tab) => {
   }
 
   if (info.menuItemId == openMIDFromServer) {
-    messenger.mailUtilsWrapper.handleNewsUri(
-      `news://${extractServer(info.linkUrl)}/${extractMID(info.linkUrl)}`
-    );
+    const mid = extractMID(info.linkUrl);
+    const messageList = await messenger.messages.query({
+      online: true,
+      headerMessageId: mid,
+    });
+    if (!messageList.messages.length) {
+      return;
+    }
+    await messenger.messageDisplay
+      .open({ messageId: messageList.messages[0].id })
+      .catch((e) => {
+        console.warn(e.message);
+      });
     return;
   }
 
