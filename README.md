@@ -1,6 +1,6 @@
 # Open by Message-ID
 
-Add-On for Thunderbird 128
+Add-On for Thunderbird 137+
 
 For any 'mid', 'mailto', 'news', or 'nntp' URI that may contain a Message-ID,
 this adds menu items to the context menu to attempt to open the message for

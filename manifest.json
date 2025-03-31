@@ -2,13 +2,12 @@
   "manifest_version": 2,
   "name": "Open by Message-ID",
   "description": "Open links that may contain a Message-ID in several ways.",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "author": "Hartmut Welpmann [:welpy-cw]",
   "browser_specific_settings": {
     "gecko": {
       "id": "welpy-cw.open-by-message-id@addons.thunderbird.net",
-      "strict_min_version": "137.0a1",
-      "strict_max_version": "137.*"
+      "strict_min_version": "137.0"
     }
   },
   "background": {
