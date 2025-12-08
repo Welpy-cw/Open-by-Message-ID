@@ -51,12 +51,18 @@ messenger.menus.onShown.addListener((info, tab) => {
 
 messenger.menus.onClicked.addListener(async (info, tab) => {
   const extractMID = (url) => {
-    return decodeURI(url.replace(/(.*(\/|:))(?!.*(\/|:))/, ""));
-  };
+    // While message-ids themselves are not URI-encoded and may contain the
+    // percentage sign, certain special characters in 'news:' URIs containing
+    // a message-id need to be percent-encoded.
+    // @see {@link https://datatracker.ietf.org/doc/html/rfc5538#section-4}
+    if (/^(s?news|nntp):.*@.*/.test(url)) {
+      // Remove the part up to the last slash or colon and return the
+      // percent-decoded message-id.
+      return decodeURI(url.replace(/(.*(\/|:))(?!.*(\/|:))/, ""));
+    }
 
-  const extractServer = (url) => {
-    const found = url.match(/^.*:\/\/(.*)\//);
-    return found?.length > 1 ? decodeURI(found[1]) : "";
+    // Remove the part up to to the first colon and return the raw message-id.
+    return url.replace(/.*?:/, "");
   };
 
   if (info.menuItemId == openMIDFromDatabase) {
@@ -81,7 +87,7 @@ messenger.menus.onClicked.addListener(async (info, tab) => {
   }
 
   if (info.menuItemId == openMIDFromServer) {
-    const mid = extractMID(info.linkUrl);
+    const mid = encodeURI(extractMID(info.linkUrl));
     const messageList = await messenger.messages.query({
       online: true,
       headerMessageId: mid,
