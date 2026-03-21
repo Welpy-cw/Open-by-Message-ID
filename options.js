@@ -1,4 +1,4 @@
-const lookupServices = ["Google", "Howard Knight"];
+const lookupServices = ["Newsgrouper", "Google", "Howard Knight"];
 const DEFAULT_PREFERENCES = {
   selectedLookupService: lookupServices[0],
 };

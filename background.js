@@ -5,6 +5,7 @@ const openMIDInBrowser = "openMIDBrowser";
 
 const links = ["link", "header_pane_link"];
 const browserUrls = {
+  Newsgrouper: "https://newsgrouper.org/<%mid>",
   Google: "https://groups.google.com/search?q=messageid%3A%mid",
   "Howard Knight": "http://al.howardknight.net/?STYPE=msgid&MSGI=<%mid>",
 };
@@ -105,7 +106,7 @@ messenger.menus.onClicked.addListener(async (info, tab) => {
 
   if (info.menuItemId == openMIDInBrowser) {
     const { selectedLookupService } = await messenger.storage.local.get({
-      selectedLookupService: "Google",
+      selectedLookupService: "Newsgrouper"
     });
     const mid = encodeURIComponent(extractMID(info.linkUrl));
     browser.windows.openDefaultBrowser(
